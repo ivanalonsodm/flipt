@@ -220,6 +220,12 @@ func ForwardFliptNamespace(ctx context.Context, req *http.Request) metadata.MD {
 	return forwardHeader(ctx, req, common.HeaderFliptNamespace)
 }
 
+// ForwardFliptOFREPStream extracts the "x-flipt-ofrep-stream" header from an HTTP request
+// and forwards them as grpc metadata entries.
+func ForwardFliptOFREPStream(ctx context.Context, req *http.Request) metadata.MD {
+	return forwardHeader(ctx, req, common.HeaderFliptOFREPStream)
+}
+
 func forwardHeader(ctx context.Context, req *http.Request, headerKey string) metadata.MD {
 	headerKey = strings.ToLower(headerKey)
 	md, ok := metadata.FromIncomingContext(ctx)
